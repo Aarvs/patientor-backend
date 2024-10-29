@@ -1,3 +1,6 @@
+import {z} from "zod";
+import { newPatientSchema } from "./utils";
+
 export type Weather = 'sunny' | 'rainy' | 'cloudy'| 'stormy'| 'windy';
 
 export type Visibility = 'great' | 'good' | 'ok' | 'poor';
@@ -20,19 +23,25 @@ export type DiagnosisEntry = {
 
 export type NonSensitivePatientEntry = Omit<PatientEntry, 'ssn'>;
 
-export type PatientEntry = {
-    id: string, 
-    name: string,
-    dateOfBirth: string,
-    ssn: string,
-    gender: string,
-    occupation: string,
-};
+// export interface PatientEntry {
+//     id: string, 
+//     name: string,
+//     dateOfBirth: string,
+//     ssn: string,
+//     gender: Gender,
+//     occupation: string,
+// };
 
-export type NewPatientEntry = Omit<PatientEntry, 'id'>;
+
+// export type NewPatientEntry = Omit<PatientEntry, 'id'>;
+export type NewPatientEntry = z.infer<typeof newPatientSchema>;
+
+export interface PatientEntry extends NewPatientEntry {
+    id: string,
+};
 
 export enum Gender {
     Male = 'male',
     Female = 'female',
-    Other = 'other'
+    Other = 'other',
 }

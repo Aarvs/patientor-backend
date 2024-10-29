@@ -1,5 +1,5 @@
-import { PatientEntry } from "../src/types";
-import { toNewPatientEntry } from "../src/utils";
+import { Gender, PatientEntry } from "../src/types";
+import { newPatientSchema } from "../src/utils";
 
 export const data: PatientEntry[] = [
     {
@@ -7,7 +7,7 @@ export const data: PatientEntry[] = [
         "name": "John McClane",
         "dateOfBirth": "1986-07-09",
         "ssn": "090786-122X",
-        "gender": "male",
+        "gender": Gender.Male,
         "occupation": "New york city cop"
     },
     {
@@ -15,7 +15,7 @@ export const data: PatientEntry[] = [
         "name": "Martin Riggs",
         "dateOfBirth": "1979-01-30",
         "ssn": "300179-77A",
-        "gender": "male",
+        "gender": Gender.Male,
         "occupation": "Cop"
     },
     {
@@ -23,7 +23,7 @@ export const data: PatientEntry[] = [
         "name": "Hans Gruber",
         "dateOfBirth": "1970-04-25",
         "ssn": "250470-555L",
-        "gender": "other",
+        "gender": Gender.Other,
         "occupation": "Technician"
     },
     {
@@ -31,7 +31,7 @@ export const data: PatientEntry[] = [
         "name": "Dana Scully",
         "dateOfBirth": "1974-01-05",
         "ssn": "050174-432N",
-        "gender": "female",
+        "gender": Gender.Female,
         "occupation": "Forensic Pathologist"
     },
     {
@@ -39,13 +39,13 @@ export const data: PatientEntry[] = [
         "name": "Matti Luukkainen",
         "dateOfBirth": "1971-04-09",
         "ssn": "090471-8890",
-        "gender": "male",
+        "gender": Gender.Male,
         "occupation": "Digital evangelist"
     }
 ];
 
 const patientsData: PatientEntry[] = data.map(obj => {
-    const object = toNewPatientEntry(obj) as PatientEntry;
+    const object = newPatientSchema.parse(obj) as PatientEntry;
     object.id = obj.id;
     return object;
 });

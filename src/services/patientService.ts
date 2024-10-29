@@ -1,5 +1,5 @@
 import {v4 as uuidv4} from "uuid";
-import patientsData, { data } from "../../data/patients";
+import patientsData from "../../data/patients";
 
 import { NewPatientEntry, NonSensitivePatientEntry, PatientEntry } from "../types";
 
@@ -24,10 +24,6 @@ const addPatients = (entry: NewPatientEntry): PatientEntry => {
     };
 
     patientsData.push(newPatientEntry);
-    console.log(patientsData);
-    data.push(newPatientEntry);
-    console.log(data);
-
     return newPatientEntry;
 };
 
